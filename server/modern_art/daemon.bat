@@ -1,0 +1,2 @@
+daemon.py run
+cmd
