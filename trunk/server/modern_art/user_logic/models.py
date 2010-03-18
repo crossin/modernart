@@ -1,0 +1,64 @@
+# -*- coding: utf-8 -*-
+from django.db import models
+from django.contrib.auth.models import User
+import pyamf
+
+import datetime
+
+class AuctionCenter(models.Model):
+    max_player      = models.IntegerField( default = 0 )
+    count_player    = models.IntegerField( default = 0 )
+    phase           = models.IntegerField( default = 0 )
+
+class Player(models.Model):
+    gold            = models.IntegerField( default = 0 )
+    gold_frozen     = models.IntegerField( default = 0 )
+    exp             = models.IntegerField( default = 0 )
+    in_auction      = models.BooleanField( default = False )
+    auctioncenter   = models.ForeignKey( AuctionCenter , null=True)
+    max_card        = models.IntegerField( default = 10 )
+    count_card      = models.IntegerField( default = 0 )
+    name            = models.CharField(max_length=32)
+    
+class Card(models.Model):
+    card_class      = models.IntegerField( default = 0 )
+    auction_type    = models.IntegerField( default = 0 )
+    content         = models.IntegerField( default = 0 )
+    name            = models.CharField(max_length=16)
+        
+class Player_Card(models.Model):
+    player          = models.ForeignKey( Player )
+    card            = models.ForeignKey( Card )   
+    is_new          = models.BooleanField( default = False )
+    is_bought       = models.BooleanField( default = False )
+    
+class Auction(models.Model):
+    owner           = models.OneToOneField( Player )
+    card            = models.ForeignKey( Card )
+    bidder          = models.ForeignKey( Player ,related_name = "bidder_id",null=True)
+    auctioncenter   = models.ForeignKey( AuctionCenter )
+    price           = models.FloatField( default = 0.0 )
+    time_start      = models.DateTimeField( auto_now = False )
+    time_latest     = models.DateTimeField( auto_now = False )
+    count_bid       = models.IntegerField( default = 0 )
+
+class Bid(models.Model):
+    auction         = models.ForeignKey( Auction ,related_name = "bid_auction")
+    player          = models.ForeignKey( Player )
+    price           = models.FloatField( default = 0.0 )
+    
+    
+class RepurchasePrice(models.Model):
+    auctioncenter   = models.ForeignKey( AuctionCenter )
+    card_class      = models.IntegerField( default = 0 )
+    count           = models.IntegerField( default = 0 )
+    price_1         = models.FloatField( default = 0.0 )
+    price_2         = models.FloatField( default = 0.0 )
+    price_3         = models.FloatField( default = 0.0 )
+    price_4         = models.FloatField( default = 0.0 )
+  
+class PlayerLog(models.Model):
+    player          = models.ForeignKey( Player )
+    time            = models.DateTimeField( auto_now = False )
+    message         = models.CharField( max_length=200 )
+
