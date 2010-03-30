@@ -43,7 +43,7 @@ package {
         private function loadPic() : void {      	
             var request : URLRequest;
             if(content is CardModel) {
-                request = new URLRequest(content["content"] + ".png");
+                request = new URLRequest(MAConst.URL_PIC + content["content"] + ".png");
                 switch(content["card_class"]) {
                     case 0:
                         imgBorder = new Bitmap(new PicBigBorder_0(200, 270));
@@ -85,7 +85,7 @@ package {
                 this["textDesc"].text = CardModel.CARD_DESCS[content["content"] - 1];
             }
             else if(content is AuctionModel) {
-                request = new URLRequest(content["card"].content + ".png");
+                request = new URLRequest(MAConst.URL_PIC + content["card"].content + ".png");
                 switch(content["card"].card_class) {
                     case 0:
                         imgBorder = new Bitmap(new PicBigBorder_0(200, 270));
@@ -127,7 +127,7 @@ package {
                 this["textDesc"].text = CardModel.CARD_DESCS[content["card"].content - 1];
             }
             else if(content is CenterModel) {
-                request = new URLRequest("ac" + content["id"] + ".png");
+                request = new URLRequest(MAConst.URL_PIC + "ac" + content["id"] + ".png");
                 imgBorder = new Bitmap(new PicBigBorder_AC(200, 270));
             }
             image.load(request);

@@ -57,7 +57,7 @@ package {
             this["boxGold"].visible = false;
             this["boxTime"].visible = false;
 
-            headImage.load(new URLRequest("head.jpg"));
+            headImage.load(new URLRequest(MAConst.URL_PIC + "head.jpg"));
             
             addEventListener(Event.ENTER_FRAME, onTick);
         }
@@ -148,7 +148,7 @@ package {
 
         public function updateAuctionInfo(a : Object) : void {
             if (card.content["id"] == a["id"]) {
-                headImage.load(new URLRequest("u" + a["owner"].id + ".jpg"));
+                headImage.load(new URLRequest(MAConst.URL_PIC +"u" + a["owner"].id + ".jpg"));
                 this["boxGold"].textGold.text = a["price"];
                 
                 auctionStart = a["time_start"];

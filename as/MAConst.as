@@ -40,10 +40,14 @@ package {
 
         static const LIST_CARDS : int = 0x0201;
         static const LIST_BOUGHT : int = 0x202;
-//        static const LIST_BLANK : int = 0x1001;
-//        static const LIST_CARDS : int = 0x1002;
-//        static const LIST_AUCTIONS : int = 0x1003;
-//        static const LIST_PLAYERS : int = 0x1004;
-//        static const LIST_CENTERS : int = 0x1005;
+        //        static const LIST_BLANK : int = 0x1001;
+        //        static const LIST_CARDS : int = 0x1002;
+        //        static const LIST_AUCTIONS : int = 0x1003;
+        //        static const LIST_PLAYERS : int = 0x1004;
+        //        static const LIST_CENTERS : int = 0x1005;
+
+        static const URL_HOST : String = "http://192.168.18.19:8000/";
+        static const URL_SERVICE : String = URL_HOST + "service/game/";
+        static const URL_PIC : String = URL_HOST + "media/";
     }
 }

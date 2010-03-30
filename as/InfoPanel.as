@@ -1,12 +1,21 @@
 package {
+    import flash.display.Loader;
     import flash.display.Sprite;
-    import flash.events.Event;    
+    import flash.events.Event;
+    import flash.net.URLRequest;    
 
     /**
      * @author user
      */
     public class InfoPanel extends Sprite {
+        var imgHead : Loader;
+
         public function InfoPanel() {
+            imgHead = new Loader();
+            imgHead.x = -40;
+            imgHead.y = 40;
+            addChild(imgHead);
+
             addEventListener(Event.ENTER_FRAME, onTick);
         }
 
@@ -24,6 +33,9 @@ package {
             }
             this["textExp"].text = exp + " / " + next;
             this["textLevel"].text = "LV. " + level;
+            
+            imgHead.load(new URLRequest(MAConst.URL_PIC +"u" + MAView.model.player.id + ".jpg"));
+            this["txtName"].text = MAView.model.player.name;
         }
 
         private function onTick(event : Event) : void {
