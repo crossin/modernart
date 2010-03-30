@@ -11,6 +11,7 @@ package {
         var rankPanel : RankPanel;
         var listPanel : ListPanel;
 
+
         public function CenterView() {
             InitLayout();
 
@@ -18,7 +19,6 @@ package {
             this["textLog"].wordWrap = true;
             this["textLog"].multiline = true;
             this["textLog"].visible = false;
-            
 			
             this["btnLog"].addEventListener(MouseEvent.CLICK, onClickOpenLog);
             this["textLog"].addEventListener(MouseEvent.CLICK, onClickCloseLog);
@@ -33,12 +33,12 @@ package {
             addChild(showPanel);
             
             infoPanel = new InfoPanel();
-            infoPanel.x = 5;
+            infoPanel.x = 50;
             infoPanel.y = 5;
             addChild(infoPanel);
             
             rankPanel = new RankPanel();
-            rankPanel.x = 500;
+            rankPanel.x = 530;
             rankPanel.y = 5;
             addChild(rankPanel);
             
@@ -46,6 +46,8 @@ package {
             listPanel.x = 20;
             listPanel.y = 450;
             addChild(listPanel);
+            
+            
         }
 
         private function onClickOpenLog(event : MouseEvent) : void {

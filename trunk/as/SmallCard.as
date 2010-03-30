@@ -83,7 +83,7 @@ package {
         private function loadPic() : void {
             var request : URLRequest;
             if(content is CardModel) {
-                request = new URLRequest(content["content"] + "_s.png");
+                request = new URLRequest(MAConst.URL_PIC + content["content"] + "_s.png");
                 switch(content["card_class"]) {
                     case 0:
                         imgBorder = new Bitmap(new PicSmallBorder_0(100, 100));
@@ -123,7 +123,7 @@ package {
                 }
             }
             else if(content is AuctionModel) {
-                request = new URLRequest(content["card"].content + "_s.png");
+                request = new URLRequest(MAConst.URL_PIC + content["card"].content + "_s.png");
                 switch(content["card"].card_class) {
                     case 0:
                         imgBorder = new Bitmap(new PicSmallBorder_0(100, 100));
@@ -163,7 +163,7 @@ package {
                 }
             }
             else if(content is CenterModel) {
-                request = new URLRequest("ac" + content["id"] + "_s.png");
+                request = new URLRequest(MAConst.URL_PIC + "ac" + content["id"] + "_s.png");
                 imgBorder = new Bitmap(new PicSmallBorder_AC(100, 100));
             }
             //loader.load(request);

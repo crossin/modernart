@@ -21,7 +21,7 @@ package {
             nc = new NetConnection();
             //nc.connect("http://192.168.18.149:8000/service/game/");
 
-            nc.connect("http://192.168.18.19:8000/service/game/");
+            nc.connect(MAConst.URL_SERVICE);
 
             responder = new Responder(gotResult, gotError);
         }
