@@ -21,3 +21,6 @@ def login( request, template='login.html'):
         account  = request.POST['account'] 
         return render_to_response("ma.html", { 'id': account,})
     return render_to_response(template, context_instance=RequestContext(request));
+	
+def crossdomain( request, template='crossdomain.xml'):
+    return render_to_response(template, context_instance=RequestContext(request));
