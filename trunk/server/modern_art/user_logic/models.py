@@ -19,6 +19,7 @@ class Player(models.Model):
     max_card        = models.IntegerField( default = 10 )
     count_card      = models.IntegerField( default = 0 )
     name            = models.CharField(max_length=32)
+    xn_id			= models.CharField(max_length=32)
     
 class Card(models.Model):
     card_class      = models.IntegerField( default = 0 )

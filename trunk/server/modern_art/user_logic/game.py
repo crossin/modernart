@@ -160,7 +160,7 @@ def exitAuctionCenter( request, player_id ):
     
 def getPlayer( request, player_id):
     try:
-        player = Player.objects.get( id = player_id );
+        player = Player.objects.get( xn_id = player_id );
         player.auctioncenter = player.auctioncenter;#TODO: optimize
         return {
                 'player':player,
