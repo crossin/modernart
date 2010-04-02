@@ -39,7 +39,7 @@ package {
             
             rankPanel = new RankPanel();
             rankPanel.x = 530;
-            rankPanel.y = 5;
+            rankPanel.y = 50;
             addChild(rankPanel);
             
             listPanel = new ListPanel();

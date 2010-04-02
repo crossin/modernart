@@ -55,7 +55,7 @@ package {
                 case MAConst.BID_SUCCESS:
                     view.msgBox["txtMessage"].text = "竞价成功";
                     view.msgBox.visible = true;
-                    getPlayerInfo(model.player.id);
+                    getPlayerInfo(model.player.xn_id);
                     
                     var card : BigCard = view.centerView.showPanel.card;
                     if (card && card["content"] is AuctionModel && card["content"].card.auction_type != 3) {
@@ -81,7 +81,7 @@ package {
                     
                 // enter
                 case MAConst.ENTERAUCTIONCENTER_SUCCESS:
-                    getPlayerInfo(model.player.id);
+                    getPlayerInfo(model.player.xn_id);
                     //view.centerView.listPanel.showTab();
                     view.centerView.showPanel.clearCard();
                     view.msgBox["txtMessage"].text = "进入拍卖行成功";
@@ -213,7 +213,7 @@ package {
             if(paramObj["id"])
 getPlayerInfo(paramObj["id"]);
 else
-getPlayerInfo(6);
+getPlayerInfo("crossin");
         }
 
         public function onClickSmallCard(content : Object) : void {
@@ -228,7 +228,7 @@ getPlayerInfo(6);
             view.centerView.showPanel.showOfferBox();
         }
 
-        public function getPlayerInfo(id : int) : Boolean {
+        public function getPlayerInfo(id : String) : Boolean {
             nc.call("game.getPlayer", responder, id);
             return true;
         }

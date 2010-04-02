@@ -98,7 +98,7 @@ package {
         public function showCard(content : Object) : void {
             clearCard();
             card = new BigCard(content);
-            card.x = 230;
+            card.x = 145;
             card.y = 40;
             addChild(card);
             

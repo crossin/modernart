@@ -1,21 +1,22 @@
 package {
 
-    /**
-     * @author user
-     */
-    public class PlayerModel {
-        var id : int;
-        var gold : int;
-        var gold_frozen : int;
-        var exp : int;
-        // var cards:Array;
-        //var auctioncenter : int;
-        var in_auction : Boolean;
-        var count_card : int;
-        var max_card : int;
-        var name : String;
+	/**
+	 * @author user
+	 */
+	public class PlayerModel {
+		var id : int;
+		var gold : int;
+		var gold_frozen : int;
+		var exp : int;
+		// var cards:Array;
+		//var auctioncenter : int;
+		var in_auction : Boolean;
+		var count_card : int;
+		var max_card : int;
+		var name : String;
+		var xn_id : String;
 
-        public function PlayerModel() {
-        }
-    }
+		public function PlayerModel() {
+		}
+	}
 }
