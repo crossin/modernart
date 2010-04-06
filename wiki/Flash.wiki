@@ -1,0 +1,4 @@
+#labels Phase-Implementation
+遮罩层不能实现半透明遮罩，alpha遮罩必须通过as设mask实现
+
+遮罩后会影响被遮罩层上的鼠标响应，需设定遮罩层的mouseEnabled=false
