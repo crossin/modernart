@@ -2,3 +2,5 @@
 1.遮罩层不能实现半透明遮罩，alpha遮罩必须通过as设mask实现
 
 2.遮罩后会影响被遮罩层上的鼠标响应，需设定遮罩层的mouseEnabled=false
+
+3.TextField加滚动效果时，会自动根据maxScrollV判断是否可滚动
