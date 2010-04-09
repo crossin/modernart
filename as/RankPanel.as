@@ -2,7 +2,6 @@ package {
 	import flash.display.Loader;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.text.TextFormat;	
 
@@ -27,16 +26,15 @@ package {
 			sortType = SORT_COUNT;
             
 			imgCenter = new Loader();
-			imgCenter.x = 0;
+			imgCenter.x = 200;
 			imgCenter.y = 0;
 			imgCenter.scaleX = 0.3;
 			imgCenter.scaleY = 0.3;
+			imgCenter.mask = this["maskCenter"];
 			addChild(imgCenter);
 			//            this["rankHint"].visible = false;
-			
-			//			var cb : ComboBox = new ComboBox();
 			//			this["boxSort"].setStyle("fontSize", 36);
-			var format : TextFormat = new TextFormat("隶书", 16);
+			var format : TextFormat = new TextFormat("_sans", 12);	
 			this["boxSort"].textField.setStyle("textFormat", format);			
 			this["boxSort"].dropdown.setRendererStyle("textFormat", format);
 			this["boxSort"].addEventListener(Event.CHANGE, onChange);
@@ -88,16 +86,16 @@ package {
 					showPrices(MAView.model.prices);
 					timeChange = 0;
 				} else {
-					rankList[int(timeChange / 2)].visible = false;
+					rankList[timeChange].visible = false;
 					timeChange--;
 				}
 			}
            	else if(effectChange == 2) {
 
-				if (timeChange / 2 >= rankList.length) {
+				if (timeChange >= rankList.length) {
 					effectChange = 0;
 				} else {                
-					rankList[int(timeChange / 2)].visible = true;
+					rankList[timeChange].visible = true;
 					timeChange++;
 				}
 			}
@@ -107,39 +105,41 @@ package {
 		private function onCount() : void {
 			sortType = SORT_COUNT;
 			effectChange = 1;
-			timeChange = (rankList.length - 1) * 2;
+			timeChange = rankList.length - 1;
 		}
 
 		private function onIndex() : void {
 			sortType = SORT_INDEX;
 			effectChange = 1;
-			timeChange = (rankList.length - 1) * 2;
+			timeChange = rankList.length - 1;
 		}
 
 		private function onValue() : void {
 			sortType = SORT_VALUE;
 			effectChange = 1;
-			timeChange = (rankList.length - 1) * 2;
+			timeChange = rankList.length - 1;
 		}
 
 		private function onPrice() : void {
 			sortType = SORT_PRICE;
 			effectChange = 1;
-			timeChange = (rankList.length - 1) * 2;
+			timeChange = rankList.length - 1;
 		}
 
 		public function refreshPrices() : void {
 			updateInfo();
 			effectChange = 1;
-			timeChange = (rankList.length - 1) * 2;
+			timeChange = rankList.length - 1;
 		}
 
 		private function updateInfo() : void {
-			imgCenter.load(new URLRequest(MAConst.URL_PIC + "ac" + MAView.model.center.id + ".png"));
+			var center : CenterModel = MAView.model.center;
+			imgCenter.load(new URLRequest(MAConst.URL_PIC + "ac" + center.id + ".png"));
+			this["txtCenter"].text = center.name + " (" + center.count_player + "/" + center.max_player + ")";
+			this["boxSort"].textField.y = 0;
+			this["boxSort"].textField.height = 18;
 		}
 
-		
-		
 		public function showPrices(list : Array) : void {
 			for(var p in list) {
 				rankList.push(new RankItem(list[p]));
@@ -148,13 +148,9 @@ package {
 				rankList[p].visible = false;
 				addChild(rankList[p]);
 			}
-            
-            
 			//            this["rankHint"].x = 50 * MAView.controller.currentPhase + 10;
 			//            this["rankHint"].visible = true;
 			//            addChild(this["rankHint"]);
-
-			this["txtCenter"].text = MAView.model.center.id;
 		}
 
 		public function clearPrices() : void {
@@ -165,7 +161,7 @@ package {
 				//removeChild(temp);
 				temp = null;
 			}
-			this["txtCenter"].text = "";
+//			this["txtCenter"].text = "";
 //            this["rankHint"].visible = false;
 		}
 	}
