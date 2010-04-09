@@ -9,6 +9,7 @@ class AuctionCenter(models.Model):
     max_player      = models.IntegerField( default = 0 )
     count_player    = models.IntegerField( default = 0 )
     phase           = models.IntegerField( default = 0 )
+    name            = models.CharField(max_length=32)
 
 class Player(models.Model):
     gold            = models.IntegerField( default = 0 )
