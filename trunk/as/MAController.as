@@ -221,11 +221,11 @@ getPlayerInfo("crossin");
         }
 
         public function showBidBox() : void {
-            view.centerView.showPanel.showInputBox();
+            view.centerView.showPanel.showBidBox();
         }
 
         public function showOfferBox() : void {
-            view.centerView.showPanel.showOfferBox();
+            view.centerView.showPanel.showAuctionBox();
         }
 
         public function getPlayerInfo(id : String) : Boolean {

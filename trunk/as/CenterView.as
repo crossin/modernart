@@ -18,11 +18,6 @@ package {
 		}
 
 		private function InitLayout() : void {          
-			showPanel = new ShowPanel();
-			showPanel.x = 5;
-			showPanel.y = 100;
-			addChild(showPanel);
-            
 			infoPanel = new InfoPanel();
 			infoPanel.x = 50;
 			infoPanel.y = 5;
@@ -37,6 +32,11 @@ package {
 			listPanel.x = 20;
 			listPanel.y = 450;
 			addChild(listPanel);
+			
+			showPanel = new ShowPanel();
+			showPanel.x = 5;
+			showPanel.y = 100;
+			addChild(showPanel);
 		}
 
 		private function onClickOpenLog(event : MouseEvent) : void {
