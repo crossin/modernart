@@ -3,4 +3,6 @@
 
 2.遮罩后会影响被遮罩层上的鼠标响应，需设定遮罩层的mouseEnabled=false
 
-3.TextField加滚动效果时，会自动根据maxScrollV判断是否可滚动
+3.TextField 加滚动效果时，会自动根据maxScrollV判断是否可滚动
+
+4.TextField 不支持buttonMode，如需实现手形鼠标，可在外层Sprite设置mouseChildren=false
