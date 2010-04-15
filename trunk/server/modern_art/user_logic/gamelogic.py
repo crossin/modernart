@@ -43,8 +43,8 @@ T_CHECK_POINT_PHASE = [now+T_CHECK_DELTA*i for i in range(5) ];
 CURRENT_CHECK_PHASE = 0;
 CURRENT_PHASE = 0;
 
-FONT_int = "<b><font color='#962A05'>%d</font></b>"
-FONT_str = "<b><font color='#962A05'>%s</font></b>"
+FONT_int = "<b><font color='#ff3300'>%d</font></b>"
+FONT_str = "<b><font color='#990000'>%s</font></b>"
 
 class BidBase():
     def __init__(self):
@@ -210,8 +210,9 @@ class PrivateBid(BidBase):
                 player = bidder ).count();
         if( bid_history_len != 0 ):
             return BID_FAILED_HASBIDDED;
-        auction.bidder = bidder;
-        auction.price  = price;
+        if (price > auction.price):
+            auction.bidder = bidder;
+            auction.price  = price;
         bid_record = Bid( auction = auction, player = bidder, price = price);
         bidder.gold_frozen = bidder.gold_frozen + price;
         auction.time_latest = datetime.datetime.utcnow();

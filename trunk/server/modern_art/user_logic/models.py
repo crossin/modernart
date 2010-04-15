@@ -10,6 +10,7 @@ class AuctionCenter(models.Model):
     count_player    = models.IntegerField( default = 0 )
     phase           = models.IntegerField( default = 0 )
     name            = models.CharField(max_length=32)
+    description     = models.CharField(max_length=255)
 
 class Player(models.Model):
     gold            = models.IntegerField( default = 0 )
@@ -27,6 +28,7 @@ class Card(models.Model):
     auction_type    = models.IntegerField( default = 0 )
     content         = models.IntegerField( default = 0 )
     name            = models.CharField(max_length=16)
+    description     = models.CharField(max_length=255)
         
 class Player_Card(models.Model):
     player          = models.ForeignKey( Player )
@@ -48,7 +50,6 @@ class Bid(models.Model):
     auction         = models.ForeignKey( Auction ,related_name = "bid_auction")
     player          = models.ForeignKey( Player )
     price           = models.FloatField( default = 0.0 )
-    
     
 class RepurchasePrice(models.Model):
     auctioncenter   = models.ForeignKey( AuctionCenter )

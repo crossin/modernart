@@ -132,7 +132,7 @@ def enterAuctionCenter( request, player_id, auctioncenter_id ):
         player.save();
         
         #log
-        msg = u"进入拍卖行"+FONT_int%auctioncenter_id;
+        msg = u"进入拍卖行"+FONT_str%auctioncenter.name;
         LogPlayerMsg(player, msg);
         return {'statuscode':ENTERAUCTIONCENTER_SUCCESS};
         
@@ -190,11 +190,19 @@ def getAuctionCenter( request, ac_id ):
         return {'statuscode':GETAUCTIONCENTER_ERROR};
     
             
-def getAuction( request, auction_id ): 
+def getAuction( request, auction_id, player_id ): 
     try:
         a = Auction.objects.get( id = auction_id );
         a.owner = a.owner;
         a.bidder = a.bidder;
+        if( a.card.auction_type == PRIVATE_BID ):
+            bid_record = Bid.objects.filter( auction = auction_id, player = player_id );
+            if (bid_record.count() > 0):
+                a.price = bid_record[0].price;
+                a.bidder = bid_record[0].player;
+            else:
+                a.price = 0;
+                a.bidder = None;
         return {
                 'auction':a,
                 'statuscode':GETAUCTION_SUCCESS,
@@ -210,6 +218,7 @@ def getAuctionList( request, ac_id ):
         al = Auction.objects.filter( auctioncenter = ac );
         for a in al:
             a.card = a.card;
+            #a.bidder = a.bidder;
         return {
                 'auctionlist':al,
                 'statuscode':GETAUCTIONLIST_SUCCESS,
@@ -279,7 +288,7 @@ def getAuctionCenterList( request ):
 def getPlayerLog( request, player_id ):
     try:
         player  = Player.objects.get(   id = player_id );   
-        loglist = PlayerLog.objects.filter( player = player );
+        loglist = PlayerLog.objects.filter( player = player ).order_by('-time');
         
         #cardlist = [];
         #for player_card in pclist:
