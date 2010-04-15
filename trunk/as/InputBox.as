@@ -45,6 +45,8 @@ package {
 		private function onClickCancel(event : MouseEvent) : void {
 			visible = false;
 			this["txtIn"].text = 0;
+			ShowPanel(parent).card.buttonMode = true;
+			ShowPanel(parent).card.button.visible = false;
 		}
 //
 //        private function onClickOK(event : MouseEvent) : void {

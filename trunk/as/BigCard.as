@@ -62,6 +62,7 @@ package {
 		}
 
 		private function outHandler(event : MouseEvent) : void {
+			parent.parent["onHint"] = false;
 			if(buttonMode) {
 				button.visible = false;
 			}
@@ -69,20 +70,89 @@ package {
 
 		private function overHandler(event : MouseEvent) : void {
 			if(buttonMode) {
+				if(content is CardModel) {
+					if (MAView.model.player.in_auction) {
+						buttonMode = false;
+						parent.parent["txtHint"].text = "正在拍卖过程中\n不能再发起拍卖";
+					} else {
+						parent.parent["txtHint"].text = "点击拍卖此商品";
+					}	
+				}
+           		else if(content is AuctionModel) {
+					if (content["bidder_id"] == MAView.model.player.id) {
+						buttonMode = false;
+						parent.parent["txtHint"].text = "已经对此商品出价\n无需再次竞拍";
+					} else {
+						parent.parent["txtHint"].text = "点击竞拍此商品";
+					}		
+				}
+            	else if(content is CenterModel) {
+					if (content["id"] == MAView.model.center.id) {
+						buttonMode = false;
+						parent.parent["txtHint"].text = "已经在此拍卖行中";
+					} 
+					else if (MAView.model.player.in_auction) {
+						buttonMode = false;
+						parent.parent["txtHint"].text = "正在拍卖过程中\n不能离开当前拍卖行";
+					} else {
+						parent.parent["txtHint"].text = "点击进入拍卖行";
+					}
+				}
+			}
+			if(buttonMode) {
 				button.visible = true;
+			}
+			if(buttonMode || !button.visible) {
+				parent.parent["onHint"] = true;
 			}
 		}
 
 		private function clickHandler(event : MouseEvent) : void {
-			button.play();
+			if(buttonMode) {
+				if(content is CardModel) {
+					onAuction();
+				}
+           		else if(content is AuctionModel) {
+					onBid();
+				}
+            	else if(content is CenterModel) {
+					onEnter();
+				}
+			}
 			buttonMode = false;
 			//removeEventListener(MouseEvent.CLICK, clickHandler);
+		}
+
+		public function action() : void {
+			buttonMode = false;
+			button.play();
 		}
 
 		//        private function clickHandler(event : MouseEvent) : void {
 		//            //ShowPanel(parent).showButton();
 		//        }
 
+		private function onAuction() : void {
+			if(content["auction_type"] == 3) {
+				MAView.controller.showOfferBox();
+			} else {
+				MAView.controller.auction(content["id"]);
+			}
+		}
+
+		private function onBid() : void {
+			if(content["card"].auction_type == 3) {
+				MAView.controller.bid(content["id"]);
+			} else {
+				MAView.controller.showBidBox();
+			}
+		}
+
+		private function onEnter() : void {
+			MAView.controller.enterAuctionCenter(content["id"]);
+		}
+
+		
 		private function loadPic() : void {      	
 			var request : URLRequest;
 			if(content is CardModel) {
@@ -124,8 +194,8 @@ package {
 						imgType = new Bitmap(new PicType_3(36, 36));
 						break;
 				}
-				this["textName"].text = CardModel.CARD_NAMES[content["content"] - 1];
-				this["textDesc"].text = CardModel.CARD_DESCS[content["content"] - 1];
+				this["textName"].text = content["name"];
+				this["textDesc"].text = content["description"];
 			}
             else if(content is AuctionModel) {
 				request = new URLRequest(MAConst.URL_PIC + content["card"].content + ".png");
@@ -166,12 +236,16 @@ package {
 						imgType = new Bitmap(new PicType_3(36, 36));
 						break;
 				}
-				this["textName"].text = CardModel.CARD_NAMES[content["card"].content - 1];
-				this["textDesc"].text = CardModel.CARD_DESCS[content["card"].content - 1];
+				this["textName"].text = content["card"].name;
+				this["textDesc"].text = content["card"].description;
+//				this["textName"].text = CardModel.CARD_NAMES[content["card"].content - 1];
+//				this["textDesc"].text = CardModel.CARD_DESCS[content["card"].content - 1];
 			}
             else if(content is CenterModel) {
 				request = new URLRequest(MAConst.URL_PIC + "ac" + content["id"] + ".png");
 				imgBorder = new Bitmap(new PicBigBorder_AC(200, 270));
+				this["textName"].text = content["name"];
+				this["textDesc"].text = content["description"];
 			}
 			image.load(request);
 		}
