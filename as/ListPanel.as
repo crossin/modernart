@@ -66,12 +66,12 @@ package {
             circle.visible = false;
             addChild(circle);
             
-            this["btnAuction"].visible = false;
-            addChild(this["btnAuction"]);
-            this["btnBid"].visible = false;
-            addChild(this["btnBid"]);
-            this["btnEnter"].visible = false;
-            addChild(this["btnEnter"]);
+//            this["btnAuction"].visible = false;
+//            addChild(this["btnAuction"]);
+//            this["btnBid"].visible = false;
+//            addChild(this["btnBid"]);
+//            this["btnEnter"].visible = false;
+//            addChild(this["btnEnter"]);
 				
             this["listBack"].gotoAndStop("CCENTER");
             
@@ -81,9 +81,9 @@ package {
             this["btnGetBought"].addEventListener(MouseEvent.CLICK, onClickGetBought);
             this["btnGetCenters"].addEventListener(MouseEvent.CLICK, onClickGetCenters);
             
-            this["btnAuction"].addEventListener(MouseEvent.CLICK, onClickAuction);
-            this["btnBid"].addEventListener(MouseEvent.CLICK, onClickBid);
-            this["btnEnter"].addEventListener(MouseEvent.CLICK, onClickEnter);
+//            this["btnAuction"].addEventListener(MouseEvent.CLICK, onClickAuction);
+//            this["btnBid"].addEventListener(MouseEvent.CLICK, onClickBid);
+//            this["btnEnter"].addEventListener(MouseEvent.CLICK, onClickEnter);
           
             this["arrowLeft"].addEventListener(MouseEvent.MOUSE_OVER, onSlideLeft);
             this["arrowRight"].addEventListener(MouseEvent.MOUSE_OVER, onSlideRight);
@@ -174,25 +174,25 @@ package {
             hideButton();
         }
 
-        private function onClickAuction(event : MouseEvent) : void {
-            if(cardSelected.content["auction_type"] == 3) {
-                MAView.controller.showOfferBox();
-            } else {
-                MAView.controller.auction(cardSelected.content["id"]);
-            }
-        }
-
-        private function onClickBid(event : MouseEvent) : void {
-            if(cardSelected.content["card"].auction_type == 3) {
-                MAView.controller.bid(cardSelected.content["id"]);
-            } else {
-                MAView.controller.showBidBox();
-            }
-        }
-
-        private function onClickEnter(event : MouseEvent) : void {
-            MAView.controller.enterAuctionCenter(cardSelected.content["id"]);
-        }
+//        private function onClickAuction(event : MouseEvent) : void {
+//            if(cardSelected.content["auction_type"] == 3) {
+//                MAView.controller.showOfferBox();
+//            } else {
+//                MAView.controller.auction(cardSelected.content["id"]);
+//            }
+//        }
+//
+//        private function onClickBid(event : MouseEvent) : void {
+//            if(cardSelected.content["card"].auction_type == 3) {
+//                MAView.controller.bid(cardSelected.content["id"]);
+//            } else {
+//                MAView.controller.showBidBox();
+//            }
+//        }
+//
+//        private function onClickEnter(event : MouseEvent) : void {
+//            MAView.controller.enterAuctionCenter(cardSelected.content["id"]);
+//        }
 
         public function showList(list : Array) : void {
             //var index:int =0;
@@ -226,37 +226,37 @@ package {
             
         }
 
-        public function showButton() : void {
-            //this["btnGetCenters"].visible = true;
-
-            if(cardSelected) {
-                if(cardSelected.content is CardModel) {
-                    this["btnAuction"].visible = true;
-                    this["btnAuction"].x = cardSelected.x + cardContainer.x - 40;
-                }
-	            else if(cardSelected.content is AuctionModel) {
-                    this["btnBid"].visible = true;
-                    this["btnBid"].x = cardSelected.x + cardContainer.x - 40;
-	//                this["btnBid"].visible = true;
-	//                pricePanel["txtPrice"].text = card.content["price"];
-	//                MAView.controller.getAuction(card.content["id"]);
-	//                //pricePanel["txtOwner"].text = card.content["owner"];
-	//                //pricePanel["txtBidder"].text = card.content["bidder"];
-	//                pricePanel.visible = true;
-                }
-	            else if(cardSelected.content is CenterModel) {
-                    this["btnEnter"].visible = true;
-                    this["btnEnter"].x = cardSelected.x + cardContainer.x - 40;
-                }
-            } else {
-                this["btnAuction"].visible = false;
-            }
-        }
+//        public function showButton() : void {
+//            //this["btnGetCenters"].visible = true;
+//
+//            if(cardSelected) {
+//                if(cardSelected.content is CardModel) {
+//                    this["btnAuction"].visible = true;
+//                    this["btnAuction"].x = cardSelected.x + cardContainer.x - 40;
+//                }
+//	            else if(cardSelected.content is AuctionModel) {
+//                    this["btnBid"].visible = true;
+//                    this["btnBid"].x = cardSelected.x + cardContainer.x - 40;
+//	//                this["btnBid"].visible = true;
+//	//                pricePanel["txtPrice"].text = card.content["price"];
+//	//                MAView.controller.getAuction(card.content["id"]);
+//	//                //pricePanel["txtOwner"].text = card.content["owner"];
+//	//                //pricePanel["txtBidder"].text = card.content["bidder"];
+//	//                pricePanel.visible = true;
+//                }
+//	            else if(cardSelected.content is CenterModel) {
+//                    this["btnEnter"].visible = true;
+//                    this["btnEnter"].x = cardSelected.x + cardContainer.x - 40;
+//                }
+//            } else {
+//                this["btnAuction"].visible = false;
+//            }
+//        }
 
         public function hideButton() : void {
-            this["btnAuction"].visible = false;
-            this["btnBid"].visible = false;
-            this["btnEnter"].visible = false;
+//            this["btnAuction"].visible = false;
+//            this["btnBid"].visible = false;
+//            this["btnEnter"].visible = false;
             circle.visible = false;
         }
 

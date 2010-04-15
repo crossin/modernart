@@ -1,19 +1,20 @@
 package {
 
-    /**
-     * @author user
-     */
-    public class CardModel {  	
-        var id : int;
-        var card_class : int;
-        var auction_type : int;
-        var content : int;
-        var name : String;
+	/**
+	 * @author user
+	 */
+	public class CardModel {  	
+		var id : int;
+		var card_class : int;
+		var auction_type : int;
+		var content : int;
+		var name : String;
+		var description : String;
 
-        static const CARD_NAMES : Array = ["card 1 name",
+		static const CARD_NAMES : Array = ["card 1 name",
         									"card 2 name",        									"card 3 name",        									"card 4 name",								        	"card 5 name", 								     	  	"card 6 name", 								    	   	"card 7 name",       									 	"card 8 name",  								    	  	"card 9 name",      									  	"card 10 name",   								    	 	"card 11 name",       									 	"card 12 name",      								 	 	"card 13 name",       								 		"card 14 name",       								 		"card 15 name",        									"card 16 name",       								 		"card 17 name",        									"card 18 name",        									"card 19 name",        									"card 20 name",        									"card 21 name",        									"card 22 name",        									"card 23 name",        									"card 24 name"];
 
-        static const CARD_DESCS : Array = ["This is card 1.",
+		static const CARD_DESCS : Array = ["This is card 1.",
         									"This is card 2.",
         									"This is card 3.",
         									"This is card 4.",
@@ -38,12 +39,13 @@ package {
         									"This is card 23.",
         									"This is card 24."];
 
-        public function CardModel(c : Object) {
-            id = c["id"];
-            card_class = c["card_class"];
-            auction_type = c["auction_type"];
-            content = c["content"];
-            name = c["name"];
-        }
-    }
+		public function CardModel(c : Object) {
+			id = c["id"];
+			card_class = c["card_class"];
+			auction_type = c["auction_type"];
+			content = c["content"];
+			name = c["name"];
+			description = c["description"];
+		}
+	}
 }

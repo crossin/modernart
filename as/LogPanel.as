@@ -15,7 +15,25 @@ package {
 			this["btnOK"].addEventListener(MouseEvent.CLICK, onClickCloseLog);
 			this["btnUp"].addEventListener(MouseEvent.CLICK, onClickUp);
 			this["btnDown"].addEventListener(MouseEvent.CLICK, onClickDown);
+			this["txtLog"].addEventListener(MouseEvent.MOUSE_WHEEL, onWheel);
 			//this["btnOK"].alpha = 0.5;
+		}
+
+		private function onWheel(event : MouseEvent) : void {
+			if(this["txtLog"].scrollV == 1) {
+				this["btnUp"].mouseEnabled = false;
+				this["btnUp"].alpha = 0.5;
+			} else {
+				this["btnUp"].mouseEnabled = true;
+				this["btnUp"].alpha = 1;
+			}
+			if(this["txtLog"].scrollV == this["txtLog"].maxScrollV ) {
+				this["btnDown"].mouseEnabled = false;
+				this["btnDown"].alpha = 0.5;
+			} else {
+				this["btnDown"].mouseEnabled = true;
+				this["btnDown"].alpha = 1;
+			}
 		}
 
 		private function onClickUp(event : MouseEvent) : void {
@@ -54,7 +72,7 @@ package {
 				var day : String = (MAView.model.logs[t].time.date < 10) ? ("0" + MAView.model.logs[t].time.date) : MAView.model.logs[t].time.date;
 				var hour : String = (MAView.model.logs[t].time.hours < 10) ? ("0" + MAView.model.logs[t].time.hours) : MAView.model.logs[t].time.hours;
 				var minute : String = (MAView.model.logs[t].time.minutes < 10) ? ("0" + MAView.model.logs[t].time.minutes) : MAView.model.logs[t].time.minutes;
-				this["txtLog"].htmlText += ( month + "-" + day + " " + hour + ":" + minute + " " + MAView.model.logs[t].message);
+				this["txtLog"].htmlText += ( "<b>" + month + "-" + day + " " + hour + ":" + minute + " </b>" + MAView.model.logs[t].message);
 			}
 			this["btnUp"].mouseEnabled = false;
 			this["btnUp"].alpha = 0.5;

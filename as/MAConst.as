@@ -49,5 +49,8 @@ package {
         static const URL_HOST : String = "http://127.0.0.1:8000/";//        static const URL_HOST : String = "http://202.120.40.90:9091/";
         static const URL_SERVICE : String = URL_HOST + "service/game/";
         static const URL_PIC : String = URL_HOST + "media/";
+        
+        static const WIDTH : int = 800;
+        static const HEIGHT : int = 600;
     }
 }

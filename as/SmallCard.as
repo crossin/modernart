@@ -77,7 +77,7 @@ package {
             isSelected = true;
             
             MAView.controller.onClickSmallCard(content);
-            ListPanel(parent.parent).showButton();
+//            ListPanel(parent.parent).showButton();
         }
 
         private function loadPic() : void {

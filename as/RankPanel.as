@@ -2,6 +2,7 @@ package {
 	import flash.display.Loader;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.text.TextFormat;	
 
@@ -38,12 +39,23 @@ package {
 			this["boxSort"].textField.setStyle("textFormat", format);			
 			this["boxSort"].dropdown.setRendererStyle("textFormat", format);
 			this["boxSort"].addEventListener(Event.CHANGE, onChange);
+			this["boxSort"].addEventListener(MouseEvent.MOUSE_OVER, onHover);
+			this["boxSort"].addEventListener(MouseEvent.MOUSE_OUT, onLeave);
 
 			//			this["btnCount"].addEventListener(MouseEvent.CLICK, onCount);
 			//			this["btnPrice"].addEventListener(MouseEvent.CLICK, onPrice);
 			//			this["btnValue"].addEventListener(MouseEvent.CLICK, onValue);
 			//			this["btnIndex"].addEventListener(MouseEvent.CLICK, onIndex);
 			addEventListener(Event.ENTER_FRAME, onUpdate);
+		}
+
+		private function onHover(event : MouseEvent) : void {
+			parent["txtHint"].text = "选择排序方式";
+			parent["onHint"] = true;
+		}
+
+		private function onLeave(event : MouseEvent) : void {
+			parent["onHint"] = false;
 		}
 
 		private function onChange(event : Event) : void {

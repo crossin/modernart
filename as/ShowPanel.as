@@ -154,7 +154,7 @@ package {
 				
 				//this["btnBid"].visible = true;
 				//pricePanel["txtPrice"].text = card.content["price"];
-				MAView.controller.getAuction(card.content["id"]);
+				MAView.controller.getAuction(card.content["id"], MAView.model.player.id);
                 //pricePanel["txtOwner"].text = card.content["owner"];
                 //pricePanel["txtBidder"].text = card.content["bidder"];
                 //pricePanel.visible = true;
@@ -166,6 +166,9 @@ package {
 
 		public function updateAuctionInfo(a : Object) : void {
 			if (card.content["id"] == a["id"]) {
+				card.content["bidder_id"] = a["bidder"] ? a["bidder"].id : 0;
+				card.content["price"] = a["price"];
+				
 				headImage.load(new URLRequest(MAConst.URL_PIC + "u" + a["owner"].id + ".jpg"));
 				this["boxGold"].textGold.text = a["price"];
                 
@@ -178,9 +181,10 @@ package {
 				this["boxTime"].textTime.text = minute + ":" + second;
                 
 				//pricePanel["txtOwner"].text = a["owner"].id;
-				if (a["bidder"]) {
-                    //pricePanel["txtBidder"].text = a["bidder"].id;
-                }
+
+//				if (a["bidder"]) {
+//                    //pricePanel["txtBidder"].text = a["bidder"].id;
+//                }
 			}
 		}
 
