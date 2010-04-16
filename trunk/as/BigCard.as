@@ -69,36 +69,36 @@ package {
 		}
 
 		private function overHandler(event : MouseEvent) : void {
-			if(buttonMode) {
-				if(content is CardModel) {
-					if (MAView.model.player.in_auction) {
-						buttonMode = false;
-						parent.parent["txtHint"].text = "正在拍卖过程中\n不能再发起拍卖";
-					} else {
-						parent.parent["txtHint"].text = "点击拍卖此商品";
-					}	
-				}
-           		else if(content is AuctionModel) {
-					if (content["bidder_id"] == MAView.model.player.id) {
-						buttonMode = false;
-						parent.parent["txtHint"].text = "已经对此商品出价\n无需再次竞拍";
-					} else {
-						parent.parent["txtHint"].text = "点击竞拍此商品";
-					}		
-				}
-            	else if(content is CenterModel) {
-					if (content["id"] == MAView.model.center.id) {
-						buttonMode = false;
-						parent.parent["txtHint"].text = "已经在此拍卖行中";
-					} 
-					else if (MAView.model.player.in_auction) {
-						buttonMode = false;
-						parent.parent["txtHint"].text = "正在拍卖过程中\n不能离开当前拍卖行";
-					} else {
-						parent.parent["txtHint"].text = "点击进入拍卖行";
-					}
+			//if(buttonMode) {
+			if(content is CardModel) {
+				if (MAView.model.player.in_auction) {
+					buttonMode = false;
+					parent.parent["txtHint"].text = "正在拍卖过程中\n不能再发起拍卖";
+				} else {
+					parent.parent["txtHint"].text = "点击拍卖此商品";
+				}	
+			} else if(content is AuctionModel) {
+				if (content["bidder_id"] == MAView.model.player.id) {
+					buttonMode = false;
+					parent.parent["txtHint"].text = "已经对此商品出价\n无需再次竞拍";
+				} else if (((content["card"].auction_type == 1) && (MAView.model.player.gold - MAView.model.player.gold_frozen <= content["price"])) || ((content["card"].auction_type == 2) && (MAView.model.player.gold - MAView.model.player.gold_frozen <= 0)) || ((content["card"].auction_type == 3) && (MAView.model.player.gold - MAView.model.player.gold_frozen < content["price"]))) {
+					buttonMode = false;
+					parent.parent["txtHint"].text = "资金不足\n不能参与竞拍此商品";
+				} else {
+					parent.parent["txtHint"].text = "点击竞拍此商品";
+				}		
+			} else if(content is CenterModel) {
+				if (content["id"] == MAView.model.center.id) {
+					buttonMode = false;
+					parent.parent["txtHint"].text = "已经在此拍卖行中";
+				} else if (MAView.model.player.in_auction) {
+					buttonMode = false;
+					parent.parent["txtHint"].text = "正在拍卖过程中\n不能离开当前拍卖行";
+				} else {
+					parent.parent["txtHint"].text = "点击进入拍卖行";
 				}
 			}
+			//}
 			if(buttonMode) {
 				button.visible = true;
 			}
