@@ -59,7 +59,7 @@ class PublicBid(BidBase):
         pass;
     @transaction.commit_on_success
     def bidding(self, bidder, auction, price ):
-        if ( price < auction.price ):
+        if ( price <= auction.price ):
             return BID_FAILED_PRICETOOLOW;
         if ( auction.bidder == bidder ):
             return BID_FAILED_HASBIDDED;
