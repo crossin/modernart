@@ -3,7 +3,7 @@ package {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.net.URLRequest;    
+	import flash.net.URLRequest;	
 
 	/**
 	 * @author user
@@ -29,16 +29,44 @@ package {
 			//pricePanel = new PricePanel();
 			//addChild(pricePanel);
 			//inputBox.z = 9999
+
+			
+			
 			auctionBox.visible = false;
 			bidBox.visible = false;
 			auctionBox["btnOK"].addEventListener(MouseEvent.CLICK, onClickAuction);
 			bidBox["btnOK"].addEventListener(MouseEvent.CLICK, onClickBid);
+			
+			auctionBox["txtIn"].addEventListener(Event.CHANGE, onChangeAuction);
+			bidBox["txtIn"].addEventListener(Event.CHANGE, onChangeBid);
             
 			initInfoBoxes();
             
 //            this["btnAuction"].addEventListener(MouseEvent.CLICK, onClickAuction);
 //            this["btnBid"].addEventListener(MouseEvent.CLICK, onClickBid);
 //            this["btnEnter"].addEventListener(MouseEvent.CLICK, onClickEnter);
+		}
+
+		private function onChangeAuction(event : Event) : void {
+			auctionBox["txtIn"].text = int(auctionBox["txtIn"].text);
+			if (auctionBox["txtIn"].text <= 0) {
+				auctionBox["btnOK"].mouseEnabled = false;
+				auctionBox["btnOK"].alpha = 0.5;
+			} else {
+				auctionBox["btnOK"].mouseEnabled = true;
+				auctionBox["btnOK"].alpha = 1;
+			}
+		}
+
+		private function onChangeBid(event : Event) : void {
+			bidBox["txtIn"].text = int(bidBox["txtIn"].text);
+			if ((bidBox["txtIn"].text <= card.content["price"]) || (bidBox["txtIn"].text > MAView.model.player.gold - MAView.model.player.gold_frozen )) {
+				bidBox["btnOK"].mouseEnabled = false;
+				bidBox["btnOK"].alpha = 0.5;
+			} else {
+				bidBox["btnOK"].mouseEnabled = true;
+				bidBox["btnOK"].alpha = 1;
+			}
 		}
 
 		private function onClickBid(event : MouseEvent) : void {
@@ -105,11 +133,15 @@ package {
 		//        }
 		public function showAuctionBox() : void {
 			addChild(auctionBox);
+			auctionBox["txtIn"].text = 1;
+			auctionBox["txtIn"].dispatchEvent(new Event(Event.CHANGE));
 			auctionBox.visible = true;
 		}
 
 		public function showBidBox() : void {
 			addChild(bidBox);
+			bidBox["txtIn"].text = card.content["price"] + 1;
+			bidBox["txtIn"].dispatchEvent(new Event(Event.CHANGE));
 			bidBox.visible = true;
 		}
 

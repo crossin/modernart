@@ -1,6 +1,7 @@
 package {
 	import flash.display.Sprite;
-	import flash.events.MouseEvent;		
+	import flash.events.Event;
+	import flash.events.MouseEvent;	
 
 	/**
 	 * @author user
@@ -19,26 +20,32 @@ package {
 
 		private function onClick0(event : MouseEvent) : void {
 			this["txtIn"].text = 0;
+			this["txtIn"].dispatchEvent(new Event(Event.CHANGE));
 		}		
 
 		private function onClick1(event : MouseEvent) : void {
 			this["txtIn"].text = int(this["txtIn"].text) + 1;
+			this["txtIn"].dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		private function onClick5(event : MouseEvent) : void {
 			this["txtIn"].text = int(this["txtIn"].text) + 5;
+			this["txtIn"].dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		private function onClick10(event : MouseEvent) : void {
 			this["txtIn"].text = int(this["txtIn"].text) + 10;
+			this["txtIn"].dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		private function onClick50(event : MouseEvent) : void {
 			this["txtIn"].text = int(this["txtIn"].text) + 50;
+			this["txtIn"].dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		private function onClick100(event : MouseEvent) : void {
 			this["txtIn"].text = int(this["txtIn"].text) + 100;
+			this["txtIn"].dispatchEvent(new Event(Event.CHANGE));
 		}
 
 		

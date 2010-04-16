@@ -1,7 +1,7 @@
 package {
 	import flash.display.LoaderInfo;
 	import flash.net.NetConnection;
-	import flash.net.Responder;    
+	import flash.net.Responder;	
 
 	/**
 	 * @author user
@@ -216,7 +216,7 @@ package {
 			if(paramObj["id"])
 getPlayerInfo(paramObj["id"]);
 else
-getPlayerInfo("zinking");
+getPlayerInfo("crossin");
 		}
 
 		public function onClickSmallCard(content : Object) : void {
@@ -251,12 +251,12 @@ getPlayerInfo("zinking");
 			return true;
 		}
 
-		public function auction(card_id : int,price : int = 0) : Boolean {
+		public function auction(card_id : int, price : int = 0) : Boolean {
 			nc.call("game.auction", responder, model.player.id, card_id, price);
 			return true;
 		}
 
-		public function bid(auction_id : int,price : int = 0) : Boolean {
+		public function bid(auction_id : int, price : int = 0) : Boolean {
 			nc.call("game.bid", responder, model.player.id, auction_id, price);
 			return true;
 		}
