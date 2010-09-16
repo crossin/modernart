@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
 from views import *;
+from user_logic.views import *;
 import settings
 
 # Uncomment the next two lines to enable the admin:
@@ -22,6 +23,7 @@ urlpatterns = patterns('',
     url(r'^service/repurchase/', repurchase, {'template': 'repurchase.html'}, name='purchase'),
     url(r'^service/login/', login, {'template': 'login.html'}, name='login'),
 	url(r'^crossdomain.xml', crossdomain, {'template': 'crossdomain.xml'}, name='crossdomain'),
+    url(r'^setup/$', setup_initial_data, {'template': 'default.html'}, name='setup'),
     (r'^service/test/', 'service.test.testGateway'),
     (r'^service/game/', 'user_logic.game.gameGateway'),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT ,'show_indexes': True}),
