@@ -13,7 +13,7 @@ package {
         var content : Object;
         var image : Loader;
         var imgBorder : Bitmap;
-        var imgType : Bitmap;
+        var imgType : Sprite;
         var isSelected : Boolean;
 
         public function SmallCard(c : Object) {
@@ -111,15 +111,15 @@ package {
                         break;
                 }
                 switch(content["auction_type"]) {
-                    case 1:
-                        imgType = new Bitmap(new PicType_1(36, 36));
-                        break;
-                    case 2:
-                        imgType = new Bitmap(new PicType_2(36, 36));
-                        break;
-                    case 3:
-                        imgType = new Bitmap(new PicType_3(36, 36));
-                        break;
+					case 1:
+						imgType = new PicType_1();
+						break;
+					case 2:
+						imgType = new PicType_2();
+						break;
+					case 3:
+						imgType = new PicType_3();
+						break;
                 }
             }
             else if(content is AuctionModel) {
@@ -151,15 +151,15 @@ package {
                         break;
                 }
                 switch(content["card"].auction_type) {
-                    case 1:
-                        imgType = new Bitmap(new PicType_1(36, 36));
-                        break;
-                    case 2:
-                        imgType = new Bitmap(new PicType_2(36, 36));
-                        break;
-                    case 3:
-                        imgType = new Bitmap(new PicType_3(36, 36));
-                        break;
+ 					case 1:
+						imgType = new PicType_1();
+						break;
+					case 2:
+						imgType = new PicType_2();
+						break;
+					case 3:
+						imgType = new PicType_3();
+						break;
                 }
             }
             else if(content is CenterModel) {

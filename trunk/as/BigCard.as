@@ -13,7 +13,7 @@ package {
 		var content : Object;
 		var image : Loader;
 		var imgBorder : Bitmap;
-		var imgType : Bitmap;
+		var imgType : Sprite;
 		var button : MovieClip;
 
 		public function BigCard(c : Object) {
@@ -185,13 +185,13 @@ package {
 				}
 				switch(content["auction_type"]) {
 					case 1:
-						imgType = new Bitmap(new PicType_1(36, 36));
+						imgType = new PicType_1();
 						break;
 					case 2:
-						imgType = new Bitmap(new PicType_2(36, 36));
+						imgType = new PicType_2();
 						break;
 					case 3:
-						imgType = new Bitmap(new PicType_3(36, 36));
+						imgType = new PicType_3();
 						break;
 				}
 				this["textName"].text = content["name"];
@@ -227,13 +227,13 @@ package {
 				}
 				switch(content["card"].auction_type) {
 					case 1:
-						imgType = new Bitmap(new PicType_1(36, 36));
+						imgType = new PicType_1();
 						break;
 					case 2:
-						imgType = new Bitmap(new PicType_2(36, 36));
+						imgType = new PicType_2();
 						break;
 					case 3:
-						imgType = new Bitmap(new PicType_3(36, 36));
+						imgType = new PicType_3();
 						break;
 				}
 				this["textName"].text = content["card"].name;

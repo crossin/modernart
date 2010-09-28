@@ -24,6 +24,8 @@ package {
 			nc.connect(MAConst.URL_SERVICE);
 
 			responder = new Responder(gotResult, gotError);
+			
+
 		}
 
 		private function gotResult(result_value : Object) : void {
