@@ -46,7 +46,7 @@ package {
         //        static const LIST_PLAYERS : int = 0x1004;
         //        static const LIST_CENTERS : int = 0x1005;
 
-        static const URL_HOST : String = "http://super-museum.appspot.com/";//        static const URL_HOST : String = "http://localhost:8081/";
+//        static const URL_HOST : String = "http://super-museum.appspot.com/";        static const URL_HOST : String = "http://localhost:8081/";
         static const URL_SERVICE : String = URL_HOST + "service/game/";
         static const URL_PIC : String = URL_HOST + "media/";
         
