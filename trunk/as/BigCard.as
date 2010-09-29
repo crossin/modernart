@@ -88,7 +88,7 @@ package {
 					parent.parent["txtHint"].text = "点击竞拍此商品";
 				}		
 			} else if(content is CenterModel) {
-				if (content["id"] == MAView.model.center.id) {
+				if (MAView.model.center && content["id"] == MAView.model.center.id) {
 					buttonMode = false;
 					parent.parent["txtHint"].text = "已经在此拍卖行中";
 				} else if (MAView.model.player.in_auction) {
