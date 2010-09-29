@@ -30,6 +30,8 @@ def setup_initial_data( request,  template='default.html', extra_context=None):
         c.save();
     for ac in iAuctionCenters:
         ac.save();
+    for rp in iRepurchasePrices:
+        rp.save();
     context['msg'] = 'Initial Data Setup successfully';
     return rtr( template, context, context_instance=extra_context, mimetype="application/xhtml+xml")
 
